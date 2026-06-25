@@ -240,6 +240,89 @@
 
   .vuoto { color: #aabfa2; font-size: 0.85rem; font-style: italic; text-align: center; padding: 0.5rem 0; }
 
+  /* ── PORTO DA CASA ── */
+  .porto-form-box {
+    background: var(--bianco); border: 1.5px solid var(--bordo); border-radius: 12px;
+    padding: 1.3rem; box-shadow: 0 1px 3px rgba(46,61,42,0.06);
+  }
+
+  .categorie-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem;
+  }
+
+  .cat-item {
+    background: var(--cielo); border: 1.5px solid var(--bordo); border-radius: 9px;
+    padding: 0.65rem 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 0.55rem;
+    transition: border-color 0.2s, background 0.2s;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .cat-item:hover { border-color: var(--salvia); }
+  .cat-item.selected { border-color: var(--verde); background: #eef6eb; }
+  .cat-emoji { font-size: 1.3rem; }
+  .cat-nome  { font-size: 0.85rem; font-weight: 700; color: var(--testo); }
+
+  .porto-desc-label {
+    font-size: 0.73rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--verde); font-weight: 700; margin-bottom: 0.5rem; display: block;
+  }
+
+  .porto-desc-input {
+    width: 100%; background: var(--cielo); border: 1.5px solid var(--bordo);
+    border-radius: 8px; padding: 0.7rem 1rem; font-size: 0.92rem; color: var(--testo);
+    font-family: 'Lato', sans-serif; outline: none; resize: vertical; min-height: 65px;
+    transition: border-color 0.2s;
+  }
+  .porto-desc-input:focus { border-color: var(--verde); }
+  .porto-desc-input::placeholder { color: #aabfa2; }
+
+  .porto-nome-row { display: flex; gap: 0.6rem; margin-top: 0.9rem; align-items: flex-end; }
+
+  .porto-nome-wrap { flex: 1; }
+  .porto-nome-wrap label {
+    display: block; font-size: 0.73rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--verde); font-weight: 700; margin-bottom: 0.4rem;
+  }
+  .porto-nome-wrap input {
+    width: 100%; background: var(--cielo); border: 1.5px solid var(--bordo);
+    border-radius: 8px; padding: 0.65rem 0.9rem; font-size: 0.95rem; color: var(--testo);
+    font-family: 'Lato', sans-serif; outline: none; transition: border-color 0.2s;
+  }
+  .porto-nome-wrap input:focus { border-color: var(--verde); }
+  .porto-nome-wrap input::placeholder { color: #aabfa2; }
+
+  .btn-porto {
+    padding: 0.65rem 1.1rem; background: linear-gradient(135deg, var(--verde), var(--verde2));
+    border: none; border-radius: 9px; color: #fff; font-family: 'Lato', sans-serif;
+    font-size: 0.85rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+    transition: opacity 0.2s; box-shadow: 0 3px 10px rgba(47,94,63,0.2);
+  }
+  .btn-porto:hover:not(:disabled) { opacity: 0.88; }
+  .btn-porto:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  .porto-stato { font-size: 0.78rem; color: var(--testo2); text-align: center; margin-top: 0.5rem; min-height: 1rem; }
+
+  /* pannello pubblico cosa portiamo */
+  .casa-panel {
+    background: var(--bianco); border: 1.5px solid var(--bordo); border-radius: 12px;
+    padding: 1.5rem; margin-top: 0.8rem; box-shadow: 0 2px 8px rgba(74,124,89,0.08);
+  }
+  .casa-panel h3 { font-family: 'Playfair Display', serif; color: var(--verde2); margin-bottom: 1rem; font-size: 1.05rem; }
+
+  .casa-riga {
+    display: flex; flex-direction: column; gap: 0.15rem;
+    padding: 0.6rem 0; border-bottom: 1px solid var(--bordo); font-size: 0.88rem;
+  }
+  .casa-riga:last-child { border-bottom: none; }
+  .casa-head { display: flex; justify-content: space-between; align-items: center; }
+  .casa-nome  { color: var(--testo); font-weight: 700; }
+  .casa-ts    { color: #aabfa2; font-size: 0.72rem; }
+  .casa-badge {
+    display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 0.15rem 0.55rem; border-radius: 20px;
+    background: #e8f5e1; color: var(--verde2); border: 1px solid var(--bordo); margin-right: 0.4rem;
+  }
+  .casa-desc { color: var(--testo2); font-size: 0.83rem; margin-top: 0.1rem; }
+
   .footer { text-align: center; padding: 2rem 1rem; font-size: 0.72rem; color: #aabfa2; letter-spacing: 0.1em; }
 </style>
 </head>
@@ -290,6 +373,32 @@
     <p>Abbiamo ricevuto la tua scelta.<br>Ti aspettiamo stasera — il forno è già acceso!</p>
     <br>
     <button class="btn-cambia" onclick="cambiaScelta()">✏️ Cambia la mia scelta</button>
+  </div>
+
+  <!-- COSA PORTO DA CASA -->
+  <div class="section-title" style="margin-top:2.5rem">— Cosa porto da casa? —</div>
+
+  <div class="porto-form-box" id="portoFormBox">
+    <div class="categorie-grid" id="categorieGrid"></div>
+
+    <label class="porto-desc-label" for="portoDescInput">Cosa porti esattamente?</label>
+    <textarea class="porto-desc-input" id="portoDescInput" placeholder="Es. tiramisù della nonna, bruschette al pomodoro…" maxlength="200"></textarea>
+
+    <div class="porto-nome-row">
+      <div class="porto-nome-wrap">
+        <label for="portoNomeInput">Il tuo nome</label>
+        <input type="text" id="portoNomeInput" placeholder="Es. Marco, Giulia…" maxlength="40" autocomplete="off">
+      </div>
+      <button class="btn-porto" id="btnPorto" disabled onclick="inviaPorto()">Salva 🧺</button>
+    </div>
+    <div class="porto-stato" id="portoStato"></div>
+  </div>
+
+  <!-- PANNELLO PUBBLICO COSA PORTIAMO -->
+  <div class="casa-panel" id="casaPanel">
+    <h3>🧺 Cosa portiamo da casa</h3>
+    <div id="listaCasa"><div class="vuoto">Caricamento…</div></div>
+    <button class="btn-reset" style="margin-top:1rem" onclick="resetPorto()">🗑 Azzera lista</button>
   </div>
 
   <!-- ADMIN -->
@@ -346,22 +455,128 @@
   var scelta = null;          // indice pizza selezionata
   var scelteBevande = {};     // { indice: true/false }
 
-  /* ── JSONBin ── */
-  function leggiOrdini(callback) {
+  /* ── JSONBin helpers (preserve both ordini+porto) ── */
+  function leggiRecord(callback) {
     fetch(JSONBIN_URL + '/latest', { headers: { 'X-Master-Key': JSONBIN_KEY } })
       .then(function(r) { return r.json(); })
-      .then(function(d) { callback(d.record.ordini || []); })
-      .catch(function() { callback([]); });
+      .then(function(d) { callback(d.record); })
+      .catch(function() { callback({ ordini: [], porto: [] }); });
   }
 
-  function salvaOrdini(ordini, callback) {
+  function leggiOrdini(callback) {
+    leggiRecord(function(r) { callback(r.ordini || []); });
+  }
+
+  function leggiPorto(callback) {
+    leggiRecord(function(r) { callback(r.porto || []); });
+  }
+
+  function salvaRecord(record, callback) {
     fetch(JSONBIN_URL, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
-      body: JSON.stringify({ ordini: ordini })
+      body: JSON.stringify(record)
     })
     .then(function() { if (callback) callback(); })
     .catch(function() { if (callback) callback(); });
+  }
+
+  function salvaOrdini(ordini, callback) {
+    leggiRecord(function(r) { r.ordini = ordini; salvaRecord(r, callback); });
+  }
+
+  function salvaPorto(porto, callback) {
+    leggiRecord(function(r) { r.porto = porto; salvaRecord(r, callback); });
+  }
+
+  /* ── Porto da casa ── */
+  var categorie = [
+    { nome: 'Antipasti', emoji: '🥗' },
+    { nome: 'Contorni',  emoji: '🥦' },
+    { nome: 'Bevande',   emoji: '🍷' },
+    { nome: 'Dolci',     emoji: '🍰' },
+  ];
+  var catScelta = null;
+
+  function renderCategorie() {
+    var grid = document.getElementById('categorieGrid');
+    grid.innerHTML = '';
+    categorie.forEach(function(c, i) {
+      var div = document.createElement('div');
+      div.className = 'cat-item';
+      div.innerHTML = '<span class="cat-emoji">' + c.emoji + '</span><span class="cat-nome">' + c.nome + '</span>';
+      div.addEventListener('click', function() {
+        catScelta = i;
+        document.querySelectorAll('.cat-item').forEach(function(el, idx) { el.classList.toggle('selected', idx === i); });
+        aggiornaPorto();
+      });
+      grid.appendChild(div);
+    });
+  }
+
+  function aggiornaPorto() {
+    var nome = document.getElementById('portoNomeInput').value.trim();
+    var desc = document.getElementById('portoDescInput').value.trim();
+    document.getElementById('btnPorto').disabled = !(catScelta !== null && desc.length > 0 && nome.length > 0);
+  }
+
+  document.getElementById('portoNomeInput').addEventListener('input', aggiornaPorto);
+  document.getElementById('portoDescInput').addEventListener('input', aggiornaPorto);
+
+  function inviaPorto() {
+    var nome = document.getElementById('portoNomeInput').value.trim();
+    var desc = document.getElementById('portoDescInput').value.trim();
+    if (!nome || !desc || catScelta === null) return;
+
+    var btn = document.getElementById('btnPorto');
+    btn.disabled = true; btn.textContent = '…';
+    document.getElementById('portoStato').textContent = '⏳ Salvataggio…';
+
+    leggiPorto(function(porto) {
+      var nomeNorm = nome.toLowerCase();
+      var voce = {
+        nome: nome, categoria: categorie[catScelta].nome, emoji: categorie[catScelta].emoji,
+        desc: desc, ts: new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
+      };
+      var trovato = false;
+      for (var i = 0; i < porto.length; i++) {
+        if (porto[i].nome.toLowerCase() === nomeNorm) { porto[i] = voce; trovato = true; break; }
+      }
+      if (!trovato) porto.push(voce);
+
+      salvaPorto(porto, function() {
+        btn.textContent = 'Salva 🧺'; btn.disabled = false;
+        document.getElementById('portoStato').textContent = '✅ Aggiunto!';
+        setTimeout(function() { document.getElementById('portoStato').textContent = ''; }, 3000);
+        catScelta = null;
+        document.querySelectorAll('.cat-item').forEach(function(el) { el.classList.remove('selected'); });
+        document.getElementById('portoDescInput').value = '';
+        document.getElementById('portoNomeInput').value = '';
+        aggiornaPorto();
+        mostraCasa();
+      });
+    });
+  }
+
+  function mostraCasa() {
+    var container = document.getElementById('listaCasa');
+    leggiPorto(function(porto) {
+      if (porto.length === 0) {
+        container.innerHTML = '<div class="vuoto">Nessuno ha ancora aggiunto niente.</div>';
+        return;
+      }
+      container.innerHTML = porto.map(function(v) {
+        return '<div class="casa-riga">' +
+          '<div class="casa-head"><span class="casa-nome">' + v.nome + '</span><span class="casa-ts">' + v.ts + '</span></div>' +
+          '<div class="casa-desc"><span class="casa-badge">' + v.emoji + ' ' + v.categoria + '</span>' + v.desc + '</div>' +
+        '</div>';
+      }).join('');
+    });
+  }
+
+  function resetPorto() {
+    if (!confirm('Azzerare la lista "Cosa portiamo da casa"?')) return;
+    salvaPorto([], function() { mostraCasa(); });
   }
 
   /* ── Render pizze ── */
@@ -554,6 +769,8 @@
   /* ── Init ── */
   renderPizze();
   renderBevande();
+  renderCategorie();
+  mostraCasa();
 </script>
 </body>
 </html>
