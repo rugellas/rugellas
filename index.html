@@ -27,328 +27,220 @@
     font-family: 'Lato', sans-serif;
     min-height: 100vh;
     background-image:
-      radial-gradient(ellipse at 10% 0%, rgba(138,171,126,0.25) 0%, transparent 45%),
-      radial-gradient(ellipse at 90% 10%, rgba(232,160,32,0.12) 0%, transparent 40%),
-      radial-gradient(ellipse at 50% 100%, rgba(74,124,89,0.10) 0%, transparent 50%);
+      radial-gradient(ellipse at 10% 0%,  rgba(138,171,126,0.25) 0%, transparent 45%),
+      radial-gradient(ellipse at 90% 10%, rgba(232,160,32,0.12)  0%, transparent 40%),
+      radial-gradient(ellipse at 50% 100%,rgba(74,124,89,0.10)   0%, transparent 50%);
   }
 
-  .header {
-    text-align: center;
-    padding: 3rem 1.5rem 2rem;
-  }
+  /* ── HEADER ── */
+  .header { text-align: center; padding: 3rem 1.5rem 2rem; }
 
   .top-icon {
-    font-size: 3rem;
-    display: block;
-    margin-bottom: 0.6rem;
+    font-size: 3rem; display: block; margin-bottom: 0.6rem;
     animation: sway 4s ease-in-out infinite alternate;
   }
-
   @keyframes sway {
-    0%   { transform: rotate(-4deg) scale(1); }
-    100% { transform: rotate(3deg) scale(1.06); }
+    0%   { transform: rotate(-4deg) scale(1);    }
+    100% { transform: rotate(3deg)  scale(1.06); }
   }
 
   .ristorante-label {
-    font-weight: 700;
-    font-size: 0.7rem;
-    letter-spacing: 0.38em;
-    text-transform: uppercase;
-    color: var(--verde);
-    margin-bottom: 0.4rem;
+    font-weight: 700; font-size: 0.7rem; letter-spacing: 0.38em;
+    text-transform: uppercase; color: var(--verde); margin-bottom: 0.4rem;
   }
 
   h1 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 6.5vw, 3.2rem);
-    font-weight: 700;
-    color: var(--verde2);
-    line-height: 1.1;
-    margin-bottom: 0.25rem;
+    font-weight: 700; color: var(--verde2); line-height: 1.1; margin-bottom: 0.25rem;
   }
 
   .sottotitolo {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--sole);
-    margin-bottom: 1.4rem;
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1.1rem; color: var(--sole); margin-bottom: 1.4rem;
   }
 
   .divider {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    justify-content: center;
-    margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.7rem;
+    justify-content: center; margin-bottom: 1.4rem;
   }
   .divider::before, .divider::after {
-    content: '';
-    flex: 1;
-    max-width: 60px;
-    height: 1.5px;
+    content: ''; flex: 1; max-width: 60px; height: 1.5px;
   }
   .divider::before { background: linear-gradient(90deg, transparent, var(--salvia)); }
   .divider::after  { background: linear-gradient(90deg, var(--salvia), transparent); }
   .divider-leaf { font-size: 1rem; }
 
   .intro {
-    font-size: 0.93rem;
-    line-height: 1.75;
-    color: var(--testo2);
-    max-width: 460px;
-    margin: 0 auto;
-    font-weight: 300;
+    font-size: 0.93rem; line-height: 1.75; color: var(--testo2);
+    max-width: 460px; margin: 0 auto; font-weight: 300;
   }
 
-  .menu-wrap {
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 0 1.2rem 3rem;
-  }
+  /* ── LAYOUT ── */
+  .menu-wrap { max-width: 520px; margin: 0 auto; padding: 0 1.2rem 3rem; }
 
   .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    color: var(--verde2);
-    text-align: center;
-    margin: 2rem 0 1.1rem;
+    font-family: 'Playfair Display', serif; font-size: 1.05rem;
+    color: var(--verde2); text-align: center; margin: 2rem 0 1.1rem;
   }
 
-  .pizza-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-  }
+  /* ── PIZZA LIST ── */
+  .pizza-list { display: flex; flex-direction: column; gap: 0.65rem; }
 
   .pizza-item {
-    background: var(--bianco);
-    border: 1.5px solid var(--bordo);
-    border-radius: 12px;
-    padding: 0.95rem 1.1rem;
-    cursor: pointer;
+    background: var(--bianco); border: 1.5px solid var(--bordo); border-radius: 12px;
+    padding: 0.95rem 1.1rem; cursor: pointer;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
+    display: flex; align-items: center; gap: 0.9rem;
+    user-select: none; -webkit-tap-highlight-color: transparent;
     box-shadow: 0 1px 3px rgba(46,61,42,0.06);
   }
-
-  .pizza-item:hover {
-    border-color: var(--salvia);
-    box-shadow: 0 3px 10px rgba(74,124,89,0.12);
-    transform: translateX(3px);
-  }
-
-  .pizza-item.selected {
-    border-color: var(--verde);
-    background: #eef6eb;
-    box-shadow: 0 3px 12px rgba(74,124,89,0.18);
-  }
+  .pizza-item:hover { border-color: var(--salvia); box-shadow: 0 3px 10px rgba(74,124,89,0.12); transform: translateX(3px); }
+  .pizza-item.selected { border-color: var(--verde); background: #eef6eb; box-shadow: 0 3px 12px rgba(74,124,89,0.18); }
 
   .pizza-emoji { font-size: 1.9rem; flex-shrink: 0; width: 2.2rem; text-align: center; }
-
-  .pizza-info { flex: 1; }
-
-  .pizza-nome {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--testo);
-    margin-bottom: 0.18rem;
-  }
-
-  .pizza-desc { font-size: 0.77rem; color: var(--testo2); line-height: 1.4; font-weight: 300; }
+  .pizza-info  { flex: 1; }
+  .pizza-nome  { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--testo); margin-bottom: 0.18rem; }
+  .pizza-desc  { font-size: 0.77rem; color: var(--testo2); line-height: 1.4; font-weight: 300; }
 
   .radio-dot {
-    width: 18px; height: 18px;
-    border: 2px solid var(--bordo);
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
+    width: 18px; height: 18px; border: 2px solid var(--bordo); border-radius: 50%;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
     transition: border-color 0.2s;
   }
-
   .pizza-item.selected .radio-dot { border-color: var(--verde); }
-
   .radio-dot::after {
-    content: '';
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--verde);
-    opacity: 0;
-    transition: opacity 0.2s;
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--verde); opacity: 0; transition: opacity 0.2s;
   }
-
   .pizza-item.selected .radio-dot::after { opacity: 1; }
 
+  /* ── ALTRO ── */
+  .altro-box { margin-top: 0.65rem; display: none; }
+  .altro-box textarea {
+    width: 100%; background: var(--cielo); border: 1.5px solid var(--bordo);
+    border-radius: 8px; padding: 0.7rem 1rem; font-size: 0.9rem; color: var(--testo);
+    font-family: 'Lato', sans-serif; outline: none; resize: vertical; min-height: 70px;
+    transition: border-color 0.2s;
+  }
+  .altro-box textarea:focus { border-color: var(--verde); }
+
+  /* ── BEVANDE ── */
+  .bevande-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+
+  .bevanda-item {
+    background: var(--bianco); border: 1.5px solid var(--bordo); border-radius: 10px;
+    padding: 0.75rem 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 0.6rem;
+    transition: border-color 0.2s, background 0.2s;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 1px 3px rgba(46,61,42,0.05);
+  }
+  .bevanda-item:hover { border-color: var(--salvia); }
+  .bevanda-item.selected { border-color: var(--verde); background: #eef6eb; }
+
+  .bevanda-emoji { font-size: 1.3rem; flex-shrink: 0; }
+  .bevanda-nome  { font-size: 0.83rem; font-weight: 700; color: var(--testo); line-height: 1.3; flex: 1; }
+
+  .check-dot {
+    margin-left: auto; width: 16px; height: 16px; border: 2px solid var(--bordo);
+    border-radius: 3px; flex-shrink: 0; display: flex; align-items: center;
+    justify-content: center; font-size: 0.65rem; transition: border-color 0.2s, background 0.2s;
+  }
+  .bevanda-item.selected .check-dot { border-color: var(--verde); background: var(--verde); color: #fff; }
+
+  /* ── NOME ── */
   .nome-box {
-    margin-top: 1.8rem;
-    background: var(--bianco);
-    border: 1.5px solid var(--bordo);
-    border-radius: 12px;
-    padding: 1.2rem;
-    box-shadow: 0 1px 3px rgba(46,61,42,0.06);
+    margin-top: 1.8rem; background: var(--bianco); border: 1.5px solid var(--bordo);
+    border-radius: 12px; padding: 1.2rem; box-shadow: 0 1px 3px rgba(46,61,42,0.06);
   }
-
   .nome-box label {
-    display: block;
-    font-size: 0.73rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--verde);
-    margin-bottom: 0.6rem;
-    font-weight: 700;
+    display: block; font-size: 0.73rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--verde); margin-bottom: 0.6rem; font-weight: 700;
   }
-
   .nome-box input {
-    width: 100%;
-    background: var(--cielo);
-    border: 1.5px solid var(--bordo);
-    border-radius: 8px;
-    padding: 0.7rem 1rem;
-    font-size: 1rem;
-    color: var(--testo);
-    font-family: 'Lato', sans-serif;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%; background: var(--cielo); border: 1.5px solid var(--bordo);
+    border-radius: 8px; padding: 0.7rem 1rem; font-size: 1rem; color: var(--testo);
+    font-family: 'Lato', sans-serif; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
   }
-
   .nome-box input::placeholder { color: #aabfa2; }
   .nome-box input:focus { border-color: var(--verde); box-shadow: 0 0 0 3px rgba(74,124,89,0.12); }
 
+  /* ── BUTTONS ── */
   .btn-ordina {
-    margin-top: 1.5rem;
-    width: 100%;
-    padding: 1rem;
+    margin-top: 1.5rem; width: 100%; padding: 1rem;
     background: linear-gradient(135deg, var(--verde), var(--verde2));
-    border: none;
-    border-radius: 12px;
-    color: #fff;
-    font-family: 'Lato', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    border: none; border-radius: 12px; color: #fff; font-family: 'Lato', sans-serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+    cursor: pointer; transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
     box-shadow: 0 4px 14px rgba(47,94,63,0.25);
   }
-
   .btn-ordina:hover:not(:disabled) { opacity: 0.93; transform: translateY(-1px); }
   .btn-ordina:active:not(:disabled) { transform: translateY(0); }
   .btn-ordina:disabled { opacity: 0.35; cursor: not-allowed; box-shadow: none; }
 
+  .btn-cambia {
+    margin-top: 1.2rem; background: none; border: 1.5px solid var(--bordo);
+    border-radius: 8px; color: var(--testo2); font-family: 'Lato', sans-serif;
+    font-size: 0.85rem; padding: 0.6rem 1.2rem; cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-cambia:hover { border-color: var(--salvia); color: var(--verde); }
+
+  .btn-reset {
+    margin-top: 1.1rem; background: #fff0f0; border: 1.5px solid #f5c0c0;
+    border-radius: 7px; color: #c05050; font-size: 0.75rem; padding: 0.45rem 0.9rem;
+    cursor: pointer; text-transform: uppercase; letter-spacing: 0.08em;
+    transition: background 0.2s;
+  }
+  .btn-reset:hover { background: #ffe0e0; }
+
+  /* ── STATO ── */
+  .stato-msg {
+    font-size: 0.8rem; color: var(--testo2); text-align: center;
+    margin-top: 0.6rem; min-height: 1.2rem;
+  }
+
+  /* ── GRAZIE ── */
   .grazie-panel {
-    display: none;
-    text-align: center;
-    padding: 3rem 1.5rem;
-    background: var(--bianco);
-    border: 1.5px solid var(--bordo);
-    border-radius: 14px;
-    margin-top: 1.5rem;
-    box-shadow: 0 4px 16px rgba(74,124,89,0.1);
+    display: none; text-align: center; padding: 3rem 1.5rem;
+    background: var(--bianco); border: 1.5px solid var(--bordo); border-radius: 14px;
+    margin-top: 1.5rem; box-shadow: 0 4px 16px rgba(74,124,89,0.1);
   }
-
   .grazie-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .grazie-panel h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--verde2); margin-bottom: 0.7rem; }
+  .grazie-panel p  { font-size: 0.92rem; color: var(--testo2); line-height: 1.75; }
 
-  .grazie-panel h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--verde2);
-    margin-bottom: 0.7rem;
-  }
-
-  .grazie-panel p { font-size: 0.92rem; color: var(--testo2); line-height: 1.75; }
-
-  .admin-toggle {
-    text-align: center;
-    margin-top: 2.5rem;
-    padding-bottom: 1rem;
-  }
+  /* ── ADMIN ── */
+  .admin-toggle { text-align: center; margin-top: 2.5rem; padding-bottom: 1rem; }
 
   .btn-admin {
-    background: none;
-    border: 1.5px solid var(--bordo);
-    border-radius: 7px;
-    color: #aabfa2;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    padding: 0.4rem 1rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: color 0.2s, border-color 0.2s;
+    background: none; border: 1.5px solid var(--bordo); border-radius: 7px;
+    color: #aabfa2; font-size: 0.72rem; letter-spacing: 0.1em; padding: 0.4rem 1rem;
+    cursor: pointer; text-transform: uppercase; transition: color 0.2s, border-color 0.2s;
   }
-
   .btn-admin:hover { color: var(--verde); border-color: var(--salvia); }
 
   .admin-panel {
-    display: none;
-    background: var(--bianco);
-    border: 1.5px solid var(--bordo);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-top: 0.8rem;
+    display: none; background: var(--bianco); border: 1.5px solid var(--bordo);
+    border-radius: 12px; padding: 1.5rem; margin-top: 0.8rem;
     box-shadow: 0 2px 8px rgba(74,124,89,0.08);
   }
-
-  .admin-panel h3 {
-    font-family: 'Playfair Display', serif;
-    color: var(--verde2);
-    margin-bottom: 1rem;
-    font-size: 1.05rem;
-  }
+  .admin-panel h3 { font-family: 'Playfair Display', serif; color: var(--verde2); margin-bottom: 1rem; font-size: 1.05rem; }
 
   .ordine-riga {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.55rem 0;
-    border-bottom: 1px solid var(--bordo);
-    font-size: 0.88rem;
-    gap: 0.5rem;
+    display: flex; flex-direction: column; gap: 0.2rem;
+    padding: 0.65rem 0; border-bottom: 1px solid var(--bordo); font-size: 0.88rem;
   }
-
   .ordine-riga:last-child { border-bottom: none; }
-  .ordine-nome  { color: var(--testo); font-weight: 700; white-space: nowrap; }
-  .ordine-pizza { color: var(--testo2); text-align: right; }
-  .ordine-ts    { color: #aabfa2; font-size: 0.73rem; white-space: nowrap; }
+  .ordine-head { display: flex; justify-content: space-between; }
+  .ordine-nome  { color: var(--testo); font-weight: 700; }
+  .ordine-ts    { color: #aabfa2; font-size: 0.73rem; }
+  .ordine-pizza { color: var(--testo2); font-size: 0.85rem; }
+  .ordine-bev   { color: var(--testo2); font-size: 0.8rem; }
 
   .vuoto { color: #aabfa2; font-size: 0.85rem; font-style: italic; text-align: center; padding: 0.5rem 0; }
 
-  .stato-msg {
-    font-size: 0.8rem;
-    color: var(--testo2);
-    text-align: center;
-    margin-top: 0.6rem;
-    min-height: 1.2rem;
-  }
-
-  .btn-reset {
-    margin-top: 1.1rem;
-    background: #fff0f0;
-    border: 1.5px solid #f5c0c0;
-    border-radius: 7px;
-    color: #c05050;
-    font-size: 0.75rem;
-    padding: 0.45rem 0.9rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    transition: background 0.2s;
-  }
-
-  .btn-reset:hover { background: #ffe0e0; }
-
-  .footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.72rem;
-    color: #aabfa2;
-    letter-spacing: 0.1em;
-  }
+  .footer { text-align: center; padding: 2rem 1rem; font-size: 0.72rem; color: #aabfa2; letter-spacing: 0.1em; }
 </style>
 </head>
 <body>
@@ -360,17 +252,27 @@
   <div class="sottotitolo">Al Gotto d'Oro</div>
   <div class="divider"><span class="divider-leaf">🌸</span></div>
   <p class="intro">
-    Benvenuto! Scegli la tua pizza preferita dal menu qui sotto, scrivi il tuo nome e mandaci la tua scelta. La sera, quando arriverai, la tua pizza sarà pronta — appena uscita dal forno a legna. 🍕
+    Benvenuto! Scegli la tua pizza preferita, le bevande e scrivi il tuo nome. La sera, quando arriverai, troverai tutto pronto — appena uscito dal forno a legna. 🍕
   </p>
 </div>
 
 <div class="menu-wrap">
 
-  <div class="section-title">— Scegli la tua pizza —</div>
-
+  <!-- PIZZE -->
+  <div class="section-title" id="titoloPizze">— Scegli la tua pizza —</div>
   <div class="pizza-list" id="pizzaList"></div>
 
-  <div class="nome-box">
+  <!-- CAMPO ALTRO -->
+  <div class="altro-box" id="altroBox">
+    <textarea id="altroInput" placeholder="Descrivi la tua pizza personalizzata…" maxlength="200"></textarea>
+  </div>
+
+  <!-- BEVANDE -->
+  <div class="section-title" id="titoloBevande">— Scegli le tue bevande —</div>
+  <div class="bevande-grid" id="bevandaList"></div>
+
+  <!-- NOME -->
+  <div class="nome-box" id="nomeBox">
     <label for="nomeInput">Il tuo nome</label>
     <input type="text" id="nomeInput" placeholder="Es. Marco, Giulia…" maxlength="40" autocomplete="off">
   </div>
@@ -381,16 +283,19 @@
 
   <div class="stato-msg" id="statoMsg"></div>
 
+  <!-- GRAZIE -->
   <div class="grazie-panel" id="graziePanel">
     <div class="grazie-icon">🌻</div>
     <h2>Grazie!</h2>
     <p>Abbiamo ricevuto la tua scelta.<br>Ti aspettiamo stasera — il forno è già acceso!</p>
+    <br>
+    <button class="btn-cambia" onclick="cambiaScelta()">✏️ Cambia la mia scelta</button>
   </div>
 
+  <!-- ADMIN -->
   <div class="admin-toggle">
     <button class="btn-admin" onclick="toggleAdmin()">Vista ordini (solo per te)</button>
   </div>
-
   <div class="admin-panel" id="adminPanel">
     <h3>📋 Ordini ricevuti</h3>
     <div id="listaOrdini"></div>
@@ -406,6 +311,7 @@
   var JSONBIN_BIN = '6a3cde1fda38895dfefbf263';
   var JSONBIN_URL = 'https://api.jsonbin.io/v3/b/' + JSONBIN_BIN;
 
+  /* ── Dati pizze ── */
   var pizze = [
     { nome: 'Margherita',                emoji: '🍅', desc: 'Pomodoro, fior di latte, basilico fresco' },
     { nome: 'Marinara',                  emoji: '🧄', desc: 'Pomodoro, aglio, origano, olio EVO' },
@@ -417,27 +323,41 @@
     { nome: 'Napoli',                    emoji: '🐟', desc: 'Pomodoro, mozzarella, acciughe, capperi, olive' },
     { nome: 'Bufala e Prosciutto Crudo', emoji: '🌿', desc: 'Mozzarella di bufala DOP, crudo di Parma, rucola' },
     { nome: 'Boscaiola',                 emoji: '🌲', desc: 'Salsiccia, funghi porcini, mozzarella, rosmarino' },
+    { nome: 'Fiori e Alici',             emoji: '🌸', desc: 'Fiori di zucca, alici, mozzarella, olio EVO' },
+    { nome: 'Scamorza e Speck',          emoji: '🧈', desc: 'Scamorza affumicata, speck, pomodoro' },
+    { nome: 'Altro',                     emoji: '✏️', desc: 'Scrivi tu la tua pizza personalizzata' },
   ];
 
-  var scelta = null;
+  /* ── Dati bevande ── */
+  var bevande = [
+    { nome: 'Birra Peroni',     emoji: '🍺' },
+    { nome: 'Birra Messina',    emoji: '🍺' },
+    { nome: 'Birra Raffo',      emoji: '🍺' },
+    { nome: 'Vino Bianco',      emoji: '🥂' },
+    { nome: 'Vino Rosso',       emoji: '🍷' },
+    { nome: 'Spritz',           emoji: '🍊' },
+    { nome: 'Coca Cola',        emoji: '🥤' },
+    { nome: 'Acqua Naturale',   emoji: '💧' },
+    { nome: 'Acqua Frizzante',  emoji: '💦' },
+    { nome: 'Chinotto',         emoji: '🫙' },
+    { nome: 'Aranciata',        emoji: '🍊' },
+  ];
 
-  /* ── JSONBin helpers ── */
+  var scelta = null;          // indice pizza selezionata
+  var scelteBevande = {};     // { indice: true/false }
+
+  /* ── JSONBin ── */
   function leggiOrdini(callback) {
-    fetch(JSONBIN_URL + '/latest', {
-      headers: { 'X-Master-Key': JSONBIN_KEY }
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(d) { callback(d.record.ordini || []); })
-    .catch(function() { callback([]); });
+    fetch(JSONBIN_URL + '/latest', { headers: { 'X-Master-Key': JSONBIN_KEY } })
+      .then(function(r) { return r.json(); })
+      .then(function(d) { callback(d.record.ordini || []); })
+      .catch(function() { callback([]); });
   }
 
   function salvaOrdini(ordini, callback) {
     fetch(JSONBIN_URL, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key': JSONBIN_KEY
-      },
+      headers: { 'Content-Type': 'application/json', 'X-Master-Key': JSONBIN_KEY },
       body: JSON.stringify({ ordini: ordini })
     })
     .then(function() { if (callback) callback(); })
@@ -458,56 +378,146 @@
           '<div class="pizza-desc">' + p.desc + '</div>' +
         '</div>' +
         '<div class="radio-dot"></div>';
-      div.addEventListener('click', function() { seleziona(i); });
+      div.addEventListener('click', function() { selezionaPizza(i); });
       list.appendChild(div);
     });
   }
 
-  function seleziona(i) {
+  function selezionaPizza(i) {
     scelta = i;
     document.querySelectorAll('.pizza-item').forEach(function(el, idx) {
       el.classList.toggle('selected', idx === i);
     });
+    // mostra/nascondi campo Altro
+    var isAltro = (pizze[i].nome === 'Altro');
+    document.getElementById('altroBox').style.display = isAltro ? 'block' : 'none';
+    if (!isAltro) document.getElementById('altroInput').value = '';
     aggiornaPulsante();
   }
 
+  /* ── Render bevande ── */
+  function renderBevande() {
+    var grid = document.getElementById('bevandaList');
+    grid.innerHTML = '';
+    bevande.forEach(function(b, i) {
+      var div = document.createElement('div');
+      div.className = 'bevanda-item';
+      div.innerHTML =
+        '<span class="bevanda-emoji">' + b.emoji + '</span>' +
+        '<span class="bevanda-nome">' + b.nome + '</span>' +
+        '<span class="check-dot">✓</span>';
+      div.addEventListener('click', function() { toggleBevanda(i, div); });
+      grid.appendChild(div);
+    });
+  }
+
+  function toggleBevanda(i, el) {
+    scelteBevande[i] = !scelteBevande[i];
+    el.classList.toggle('selected', !!scelteBevande[i]);
+  }
+
+  function getBevandeScelteNomi() {
+    var risultato = [];
+    Object.keys(scelteBevande).forEach(function(k) {
+      if (scelteBevande[k]) risultato.push(bevande[parseInt(k)].nome);
+    });
+    return risultato;
+  }
+
+  /* ── Pulsante ── */
   function aggiornaPulsante() {
     var nome = document.getElementById('nomeInput').value.trim();
-    document.getElementById('btnOrdina').disabled = !(scelta !== null && nome.length > 0);
+    var pizzaOk = scelta !== null;
+    // se è Altro, serve anche che il testo non sia vuoto
+    if (pizzaOk && pizze[scelta].nome === 'Altro') {
+      pizzaOk = document.getElementById('altroInput').value.trim().length > 0;
+    }
+    document.getElementById('btnOrdina').disabled = !(pizzaOk && nome.length > 0);
   }
 
   document.getElementById('nomeInput').addEventListener('input', aggiornaPulsante);
+  document.getElementById('altroInput').addEventListener('input', aggiornaPulsante);
 
-  /* ── Invia ordine ── */
+  /* ── Invia ── */
   function invia() {
     var nome = document.getElementById('nomeInput').value.trim();
     if (!nome || scelta === null) return;
+
+    var nomePizza = pizze[scelta].nome;
+    if (nomePizza === 'Altro') {
+      var testo = document.getElementById('altroInput').value.trim();
+      if (!testo) return;
+      nomePizza = 'Altro: ' + testo;
+    }
 
     var btn = document.getElementById('btnOrdina');
     btn.disabled = true;
     btn.textContent = 'Invio in corso…';
     setStato('⏳ Salvataggio…');
 
+    var bevScelteNomi = getBevandeScelteNomi();
+
     leggiOrdini(function(ordini) {
-      ordini.push({
+      var nomeNorm = nome.toLowerCase();
+      var nuovoOrdine = {
         nome: nome,
-        pizza: pizze[scelta].nome,
+        pizza: nomePizza,
+        bevande: bevScelteNomi,
         ts: new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
-      });
+      };
+      var trovato = false;
+      for (var i = 0; i < ordini.length; i++) {
+        if (ordini[i].nome.toLowerCase() === nomeNorm) {
+          ordini[i] = nuovoOrdine; trovato = true; break;
+        }
+      }
+      if (!trovato) ordini.push(nuovoOrdine);
+
       salvaOrdini(ordini, function() {
-        document.getElementById('pizzaList').style.display = 'none';
-        document.querySelector('.nome-box').style.display = 'none';
-        btn.style.display = 'none';
-        document.querySelector('.section-title').style.display = 'none';
-        document.getElementById('statoMsg').style.display = 'none';
+        nascondiForm();
         document.getElementById('graziePanel').style.display = 'block';
       });
     });
   }
 
-  function setStato(msg) {
-    document.getElementById('statoMsg').textContent = msg;
+  function nascondiForm() {
+    document.getElementById('titoloPizze').style.display    = 'none';
+    document.getElementById('pizzaList').style.display      = 'none';
+    document.getElementById('altroBox').style.display       = 'none';
+    document.getElementById('titoloBevande').style.display  = 'none';
+    document.getElementById('bevandaList').style.display    = 'none';
+    document.getElementById('nomeBox').style.display        = 'none';
+    document.getElementById('btnOrdina').style.display      = 'none';
+    document.getElementById('statoMsg').style.display       = 'none';
   }
+
+  function mostraForm() {
+    document.getElementById('titoloPizze').style.display    = 'block';
+    document.getElementById('pizzaList').style.display      = 'flex';
+    document.getElementById('altroBox').style.display       = 'none';
+    document.getElementById('titoloBevande').style.display  = 'block';
+    document.getElementById('bevandaList').style.display    = 'grid';
+    document.getElementById('nomeBox').style.display        = 'block';
+    document.getElementById('btnOrdina').style.display      = 'block';
+    document.getElementById('statoMsg').style.display       = 'block';
+  }
+
+  /* ── Cambia scelta ── */
+  function cambiaScelta() {
+    document.getElementById('graziePanel').style.display = 'none';
+    mostraForm();
+    var btn = document.getElementById('btnOrdina');
+    btn.textContent = 'Aggiorna la mia scelta 🍕';
+    setStato('');
+    // reset selezioni
+    scelta = null; scelteBevande = {};
+    document.getElementById('altroInput').value = '';
+    document.querySelectorAll('.pizza-item').forEach(function(el) { el.classList.remove('selected'); });
+    document.querySelectorAll('.bevanda-item').forEach(function(el) { el.classList.remove('selected'); });
+    aggiornaPulsante();
+  }
+
+  function setStato(msg) { document.getElementById('statoMsg').textContent = msg; }
 
   /* ── Admin ── */
   function toggleAdmin() {
@@ -526,10 +536,11 @@
         return;
       }
       container.innerHTML = ordini.map(function(o) {
+        var bev = (o.bevande && o.bevande.length > 0) ? o.bevande.join(', ') : 'nessuna bevanda';
         return '<div class="ordine-riga">' +
-          '<span class="ordine-nome">' + o.nome + '</span>' +
-          '<span class="ordine-pizza">' + o.pizza + '</span>' +
-          '<span class="ordine-ts">' + o.ts + '</span>' +
+          '<div class="ordine-head"><span class="ordine-nome">' + o.nome + '</span><span class="ordine-ts">' + o.ts + '</span></div>' +
+          '<span class="ordine-pizza">🍕 ' + o.pizza + '</span>' +
+          '<span class="ordine-bev">🥤 ' + bev + '</span>' +
         '</div>';
       }).join('');
     });
@@ -540,7 +551,9 @@
     salvaOrdini([], function() { mostraOrdini(); });
   }
 
+  /* ── Init ── */
   renderPizze();
+  renderBevande();
 </script>
 </body>
 </html>
