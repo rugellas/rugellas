@@ -446,8 +446,6 @@
     { nome: 'Vino Rosso',       emoji: '🍷' },
     { nome: 'Spritz',           emoji: '🍊' },
     { nome: 'Coca Cola',        emoji: '🥤' },
-    { nome: 'Acqua Naturale',   emoji: '💧' },
-    { nome: 'Acqua Frizzante',  emoji: '💦' },
     { nome: 'Chinotto',         emoji: '🫙' },
     { nome: 'Aranciata',        emoji: '🍊' },
   ];
@@ -492,6 +490,8 @@
   /* ── Porto da casa ── */
   var categorie = [
     { nome: 'Antipasti', emoji: '🥗' },
+    { nome: 'Primi',     emoji: '🍝' },
+    { nome: 'Secondi',   emoji: '🍖' },
     { nome: 'Contorni',  emoji: '🥦' },
     { nome: 'Bevande',   emoji: '🍷' },
     { nome: 'Dolci',     emoji: '🍰' },
@@ -533,25 +533,19 @@
     document.getElementById('portoStato').textContent = '⏳ Salvataggio…';
 
     leggiPorto(function(porto) {
-      var nomeNorm = nome.toLowerCase();
-      var voce = {
+      porto.push({
         nome: nome, categoria: categorie[catScelta].nome, emoji: categorie[catScelta].emoji,
         desc: desc, ts: new Date().toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
-      };
-      var trovato = false;
-      for (var i = 0; i < porto.length; i++) {
-        if (porto[i].nome.toLowerCase() === nomeNorm) { porto[i] = voce; trovato = true; break; }
-      }
-      if (!trovato) porto.push(voce);
+      });
 
       salvaPorto(porto, function() {
         btn.textContent = 'Salva 🧺'; btn.disabled = false;
-        document.getElementById('portoStato').textContent = '✅ Aggiunto!';
-        setTimeout(function() { document.getElementById('portoStato').textContent = ''; }, 3000);
+        document.getElementById('portoStato').textContent = '✅ Aggiunto! Vuoi aggiungere altro?';
+        setTimeout(function() { document.getElementById('portoStato').textContent = ''; }, 3500);
         catScelta = null;
         document.querySelectorAll('.cat-item').forEach(function(el) { el.classList.remove('selected'); });
         document.getElementById('portoDescInput').value = '';
-        document.getElementById('portoNomeInput').value = '';
+        // mantieni il nome per facilitare aggiunta multipla
         aggiornaPorto();
         mostraCasa();
       });
@@ -565,10 +559,23 @@
         container.innerHTML = '<div class="vuoto">Nessuno ha ancora aggiunto niente.</div>';
         return;
       }
-      container.innerHTML = porto.map(function(v) {
+      // raggruppa per nome (case-insensitive), preservando ordine di prima apparizione
+      var ordineNomi = [];
+      var gruppi = {};
+      porto.forEach(function(v) {
+        var key = v.nome.toLowerCase();
+        if (!gruppi[key]) { gruppi[key] = { nome: v.nome, voci: [] }; ordineNomi.push(key); }
+        gruppi[key].voci.push(v);
+      });
+      container.innerHTML = ordineNomi.map(function(key) {
+        var g = gruppi[key];
+        var voceHtml = g.voci.map(function(v) {
+          return '<div class="casa-desc"><span class="casa-badge">' + v.emoji + ' ' + v.categoria + '</span>' + v.desc + '</div>';
+        }).join('');
+        var ts = g.voci[g.voci.length - 1].ts;
         return '<div class="casa-riga">' +
-          '<div class="casa-head"><span class="casa-nome">' + v.nome + '</span><span class="casa-ts">' + v.ts + '</span></div>' +
-          '<div class="casa-desc"><span class="casa-badge">' + v.emoji + ' ' + v.categoria + '</span>' + v.desc + '</div>' +
+          '<div class="casa-head"><span class="casa-nome">' + g.nome + '</span><span class="casa-ts">ult. agg. ' + ts + '</span></div>' +
+          voceHtml +
         '</div>';
       }).join('');
     });
